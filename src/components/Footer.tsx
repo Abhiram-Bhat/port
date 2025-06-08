@@ -1,13 +1,19 @@
 
-import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, Heart, Sparkles } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="py-12 border-t border-border bg-secondary/20">
-      <div className="container mx-auto px-6">
+    <footer className="py-12 border-t border-border bg-secondary/20 relative overflow-hidden">
+      {/* Background animation elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-16 h-16 border border-primary/10 rounded-full animate-float opacity-30" style={{ animationDelay: '0s' }}></div>
+        <div className="absolute bottom-10 left-10 w-12 h-12 bg-primary/5 rounded-lg animate-float opacity-40" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
-            <h3 className="text-2xl font-bold gradient-text mb-4">Abhiram Bhat</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-4">Abhiram T A</h3>
             <p className="text-muted-foreground">
               AI/ML Engineering Student passionate about building intelligent systems
             </p>
@@ -33,8 +39,11 @@ const Footer = () => {
           </div>
 
           <div className="border-t border-border pt-8">
-            <p className="text-muted-foreground flex items-center justify-center gap-2">
-              Made with <Heart className="w-4 h-4 text-red-500" fill="currentColor" /> by Abhiram Bhat
+            <p className="text-muted-foreground flex items-center justify-center gap-2 mb-3">
+              Made with <Heart className="w-4 h-4 text-red-500" fill="currentColor" /> by Abhiram T A
+            </p>
+            <p className="text-sm text-muted-foreground/80 flex items-center justify-center gap-2 mb-2">
+              Crafted with <Sparkles className="w-4 h-4 text-primary" /> using <span className="text-primary font-semibold">Lovable</span>
             </p>
             <p className="text-sm text-muted-foreground mt-2">
               © 2024 All rights reserved.

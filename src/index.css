@@ -75,6 +75,18 @@
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/25;
   }
+
+  /* Sliding text animation */
+  .animate-slide-text {
+    animation: slideText 8s infinite;
+  }
+
+  .sliding-text {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* Custom scrollbar */
@@ -95,11 +107,71 @@
   background: rgb(107 114 128);
 }
 
-/* Particle animation */
+/* Enhanced particle animation */
 .particle {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   background: linear-gradient(45deg, #22c55e, #3b82f6);
-  animation: float 3s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(240deg);
+  }
+}
+
+@keyframes slideText {
+  0%, 20% {
+    transform: translateY(0);
+  }
+  25%, 45% {
+    transform: translateY(-100%);
+  }
+  50%, 70% {
+    transform: translateY(-200%);
+  }
+  75%, 95% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateY(-400%);
+  }
+}
+
+/* Additional animations for enhanced visual appeal */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Floating geometric shapes */
+@keyframes rotate-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+.animate-rotate-float {
+  animation: rotate-float 8s ease-in-out infinite;
 }
