@@ -1,32 +1,77 @@
 
-import { Progress } from '@/components/ui/progress';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 const Skills = () => {
-  const technicalSkills = [
-    { name: 'Python', level: 90 },
-    { name: 'JavaScript', level: 85 },
-    { name: 'React/MERN Stack', level: 88 },
-    { name: 'Machine Learning', level: 85 },
-    { name: 'C/C++', level: 80 },
-    { name: 'Java', level: 75 },
-    { name: 'DevOps', level: 78 },
-    { name: 'SQL/MongoDB', level: 82 },
-    { name: 'HTML/CSS', level: 90 }
+  const skillCategories = [
+    {
+      title: "Programming Languages",
+      skills: [
+        { name: "Python", level: "Advanced" },
+        { name: "JavaScript", level: "Advanced" },
+        { name: "C/C++", level: "Intermediate" },
+        { name: "Java", level: "Intermediate" }
+      ]
+    },
+    {
+      title: "Web Technologies",
+      skills: [
+        { name: "React", level: "Advanced" },
+        { name: "Node.js", level: "Advanced" },
+        { name: "HTML/CSS", level: "Advanced" },
+        { name: "MongoDB", level: "Intermediate" }
+      ]
+    },
+    {
+      title: "AI/ML & Data",
+      skills: [
+        { name: "Machine Learning", level: "Advanced" },
+        { name: "TensorFlow", level: "Intermediate" },
+        { name: "PyTorch", level: "Intermediate" },
+        { name: "Data Analysis", level: "Advanced" }
+      ]
+    }
   ];
 
   const fieldExpertise = [
-    { name: 'Frontend Development', level: 90 },
-    { name: 'Backend Development', level: 85 },
-    { name: 'DevOps & Cloud', level: 78 },
-    { name: 'UI/UX Design', level: 75 }
+    { name: "Frontend Development", description: "Building responsive and interactive user interfaces" },
+    { name: "Backend Development", description: "Creating robust server-side applications" },
+    { name: "DevOps & Cloud", description: "Streamlining deployment and infrastructure" },
+    { name: "UI/UX Design", description: "Designing user-centered digital experiences" }
   ];
 
   const tools = [
     'Visual Studio Code', 'Linux', 'Git', 'Docker', 'Tableau', 
     'Power BI', 'TensorFlow', 'PyTorch', 'MongoDB', 'MySQL',
-    'AWS', 'Jenkins', 'Kubernetes', 'Lovable'
+    'AWS', 'Jenkins', 'Kubernetes'
   ];
+
+  const whatIDoB est = [
+    {
+      title: "Machine Learning",
+      description: "Building intelligent models and data-driven applications"
+    },
+    {
+      title: "Web Development", 
+      description: "Creating responsive and interactive web applications"
+    },
+    {
+      title: "DevOps",
+      description: "Streamlining deployment and infrastructure management"
+    },
+    {
+      title: "Problem Solving",
+      description: "Analyzing complex problems and implementing efficient solutions"
+    }
+  ];
+
+  const getLevelColor = (level: string) => {
+    switch (level) {
+      case "Advanced": return "bg-primary text-primary-foreground";
+      case "Intermediate": return "bg-blue-500/20 text-blue-400 border-blue-400/20";
+      default: return "bg-secondary text-secondary-foreground";
+    }
+  };
 
   return (
     <section id="skills" className="py-16 relative overflow-hidden">
@@ -51,100 +96,86 @@ const Skills = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            <Card className="glass-effect hover-glow animate-slide-in-left group">
+          {/* Programming & Technologies Section */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold mb-6 text-center gradient-text animate-gradient bg-gradient-to-r from-primary to-blue-400">Programming & Technologies</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {skillCategories.map((category, categoryIndex) => (
+                <Card key={categoryIndex} className="glass-effect hover-glow animate-slide-in-left group" style={{ animationDelay: `${categoryIndex * 0.2}s` }}>
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-lg text-center group-hover:scale-105 transition-transform duration-300">{category.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-3">
+                      {category.skills.map((skill, skillIndex) => (
+                        <div key={skillIndex} className="flex justify-between items-center animate-slide-up" style={{ animationDelay: `${skillIndex * 0.1}s` }}>
+                          <span className="font-medium text-sm">{skill.name}</span>
+                          <Badge className={`text-xs ${getLevelColor(skill.level)}`}>
+                            {skill.level}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Field Expertise */}
+          <div className="mb-12">
+            <Card className="glass-effect hover-glow animate-slide-in-right">
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl gradient-text animate-gradient bg-gradient-to-r from-primary to-blue-400 group-hover:scale-105 transition-transform duration-300">Programming & Technologies</CardTitle>
+                <CardTitle className="text-xl gradient-text animate-gradient bg-gradient-to-r from-blue-400 to-purple-500 text-center">Field Expertise</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <div className="space-y-4 stagger-fade-in">
-                  {technicalSkills.map((skill, index) => (
-                    <div key={index} className="space-y-1 animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <div className="flex justify-between text-sm">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-primary animate-enhanced-pulse-glow">{skill.level}%</span>
-                      </div>
-                      <Progress 
-                        value={skill.level} 
-                        className="h-2 animate-slide-in-right"
-                        style={{ animationDelay: `${index * 0.1}s` }}
-                      />
+                <div className="grid md:grid-cols-2 gap-6">
+                  {fieldExpertise.map((field, index) => (
+                    <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                      <h4 className="font-semibold mb-2 text-primary">{field.name}</h4>
+                      <p className="text-sm text-muted-foreground">{field.description}</p>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-
-            <div className="space-y-6">
-              <Card className="glass-effect hover-glow animate-slide-in-right group">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl gradient-text animate-gradient bg-gradient-to-r from-blue-400 to-purple-500 group-hover:scale-105 transition-transform duration-300">Field Expertise</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="space-y-4 stagger-fade-in">
-                    {fieldExpertise.map((field, index) => (
-                      <div key={index} className="space-y-1 animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                        <div className="flex justify-between text-sm">
-                          <span className="font-medium">{field.name}</span>
-                          <span className="text-primary animate-enhanced-pulse-glow">{field.level}%</span>
-                        </div>
-                        <Progress 
-                          value={field.level} 
-                          className="h-2 animate-slide-in-left"
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="glass-effect hover-glow animate-fade-in">
-                <CardContent className="p-6">
-                  <h4 className="font-semibold mb-3 text-lg animate-slide-up">Tools & Platforms</h4>
-                  <div className="flex flex-wrap gap-2 stagger-fade-in">
-                    {tools.map((tool, index) => (
-                      <span 
-                        key={index}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs border border-primary/20 hover:bg-primary/20 hover:scale-105 transition-all duration-300 animate-bounce-in morph-button"
-                        style={{ animationDelay: `${index * 0.05}s` }}
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
 
+          {/* Tools & Platforms */}
+          <div className="mb-12">
+            <Card className="glass-effect hover-glow animate-fade-in">
+              <CardContent className="p-6">
+                <h4 className="font-semibold mb-4 text-lg text-center animate-slide-up">Tools & Platforms</h4>
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {tools.map((tool, index) => (
+                    <Badge 
+                      key={index}
+                      variant="outline"
+                      className="px-3 py-1 text-xs border-primary/20 hover:bg-primary/20 hover:scale-105 transition-all duration-300 animate-bounce-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
+                    >
+                      {tool}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* What I Do Best */}
           <Card className="glass-effect hover-glow animate-fade-in">
             <CardContent className="p-6 text-center">
               <h3 className="text-xl font-bold mb-6 gradient-text animate-gradient bg-gradient-to-r from-primary via-blue-400 to-purple-500">What I Do Best</h3>
-              <div className="grid md:grid-cols-4 gap-6 text-muted-foreground stagger-fade-in">
-                <div className="animate-bounce-in" style={{ animationDelay: '0.1s' }}>
-                  <h4 className="font-semibold text-foreground mb-2 text-sm">Machine Learning</h4>
-                  <p className="text-xs">Building intelligent models and data-driven applications</p>
-                </div>
-                <div className="animate-bounce-in" style={{ animationDelay: '0.2s' }}>
-                  <h4 className="font-semibold text-foreground mb-2 text-sm">Web Development</h4>
-                  <p className="text-xs">Creating responsive and interactive web applications</p>
-                </div>
-                <div className="animate-bounce-in" style={{ animationDelay: '0.3s' }}>
-                  <h4 className="font-semibold text-foreground mb-2 text-sm">DevOps</h4>
-                  <p className="text-xs">Streamlining deployment and infrastructure management</p>
-                </div>
-                <div className="animate-bounce-in" style={{ animationDelay: '0.4s' }}>
-                  <h4 className="font-semibold text-foreground mb-2 text-sm">Problem Solving</h4>
-                  <p className="text-xs">Analyzing complex problems and implementing efficient solutions</p>
-                </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {whatIDoB est.map((item, index) => (
+                  <div key={index} className="animate-bounce-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <h4 className="font-semibold text-foreground mb-2 text-sm">{item.title}</h4>
+                    <p className="text-xs text-muted-foreground">{item.description}</p>
+                  </div>
+                ))}
               </div>
             </CardContent>
           </Card>
-
-          <div className="text-center mt-8 text-xs text-muted-foreground/70 animate-fade-in">
-            <p>Built with passion using <span className="text-primary animate-enhanced-pulse-glow">Lovable</span> ✨</p>
-          </div>
         </div>
       </div>
     </section>

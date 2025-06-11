@@ -21,6 +21,14 @@ const About = () => {
     }
   ];
 
+  const quickFacts = [
+    { icon: "🎓", text: "AI/ML Engineering Student" },
+    { icon: "💻", text: "Full Stack Developer" },
+    { icon: "🌟", text: "Machine Learning Enthusiast" },
+    { icon: "🚀", text: "Open Source Contributor" },
+    { icon: "📍", text: "Based in Sringeri, Karnataka" }
+  ];
+
   return (
     <section id="about" className="py-16 bg-secondary/20 relative overflow-hidden">
       {/* Enhanced background animation elements */}
@@ -41,13 +49,13 @@ const About = () => {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 mb-12">
-            <div className="lg:col-span-2 animate-slide-in-left space-y-4">
-              <p className="text-base text-muted-foreground leading-relaxed animate-slide-up">
+            <div className="lg:col-span-2 animate-slide-in-left space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed animate-slide-up">
                 I am an AI/ML Engineering student with a strong passion for building intelligent systems. 
                 I specialize in developing machine learning models, working on real-world data-driven 
                 applications, and exploring deep learning and AI technologies.
               </p>
-              <p className="text-base text-muted-foreground leading-relaxed animate-slide-up">
+              <p className="text-lg text-muted-foreground leading-relaxed animate-slide-up">
                 My goal is to create innovative AI solutions that can positively impact industries. 
                 I enjoy working on challenging problems that require creative thinking and technical expertise.
               </p>
@@ -57,27 +65,13 @@ const About = () => {
               <Card className="glass-effect hover-glow animate-bounce-in">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-4 gradient-text animate-gradient bg-gradient-to-r from-primary to-blue-400">Quick Facts</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground stagger-fade-in">
-                    <li className="animate-slide-up flex items-center">
-                      <span className="mr-2">🎓</span>
-                      AI/ML Engineering Student
-                    </li>
-                    <li className="animate-slide-up flex items-center">
-                      <span className="mr-2">💻</span>
-                      Full Stack Developer
-                    </li>
-                    <li className="animate-slide-up flex items-center">
-                      <span className="mr-2">🌟</span>
-                      Machine Learning Enthusiast
-                    </li>
-                    <li className="animate-slide-up flex items-center">
-                      <span className="mr-2">🚀</span>
-                      Open Source Contributor
-                    </li>
-                    <li className="animate-slide-up flex items-center">
-                      <span className="mr-2">📍</span>
-                      Based in Sringeri, Karnataka
-                    </li>
+                  <ul className="space-y-3">
+                    {quickFacts.map((fact, index) => (
+                      <li key={index} className="animate-slide-up flex items-center text-sm text-muted-foreground" style={{ animationDelay: `${index * 0.1}s` }}>
+                        <span className="mr-3 text-lg">{fact.icon}</span>
+                        <span>{fact.text}</span>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
@@ -88,10 +82,10 @@ const About = () => {
             {highlights.map((item, index) => (
               <Card key={index} className="glass-effect hover-glow animate-bounce-in group" style={{ animationDelay: `${index * 0.2}s` }}>
                 <CardContent className="p-6 text-center">
-                  <div className="mb-3 flex justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300">
                     {item.icon}
                   </div>
-                  <h3 className="text-lg font-bold mb-2 animate-slide-up">{item.title}</h3>
+                  <h3 className="text-lg font-bold mb-3 animate-slide-up">{item.title}</h3>
                   <p className="text-sm text-muted-foreground animate-slide-up">{item.description}</p>
                 </CardContent>
               </Card>

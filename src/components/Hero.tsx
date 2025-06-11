@@ -1,11 +1,27 @@
 
 import { ChevronDown, Github, Linkedin, Twitter, Mail, MapPin, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ResumeModal from './ResumeModal';
 
 const Hero = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  
+  const roles = [
+    "AI/ML Engineering Student",
+    "DevOps Enthusiast", 
+    "Full Stack Developer",
+    "Problem Solver",
+    "Innovation Driver"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -45,14 +61,10 @@ const Hero = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-bounce-in">
               <span className="gradient-text animate-gradient bg-gradient-to-r from-primary via-blue-400 to-purple-500">Abhiram T A</span>
             </h1>
-            <div className="text-2xl md:text-3xl text-muted-foreground mb-6 h-8 overflow-hidden">
-              <div className="animate-slide-text">
-                <div className="sliding-text">AI/ML Engineering Student</div>
-                <div className="sliding-text">DevOps Enthusiast</div>
-                <div className="sliding-text">Full Stack Developer</div>
-                <div className="sliding-text">Problem Solver</div>
-                <div className="sliding-text">Innovation Driver</div>
-              </div>
+            <div className="text-2xl md:text-3xl text-muted-foreground mb-6 h-12 flex items-center justify-center">
+              <span className="animate-fade-in" key={currentTextIndex}>
+                {roles[currentTextIndex]}
+              </span>
             </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-slide-up">
               Passionate about building intelligent systems and creating innovative AI solutions 
@@ -104,10 +116,6 @@ const Hero = () => {
           <div className="flex items-center justify-center text-muted-foreground animate-slide-up">
             <MapPin className="w-4 h-4 mr-2" />
             <span>Sringeri, Karnataka</span>
-          </div>
-
-          <div className="mt-8 text-sm text-muted-foreground/70 animate-fade-in">
-            Built with ❤️ using <span className="text-primary animate-enhanced-pulse-glow">Lovable</span>
           </div>
         </div>
 
