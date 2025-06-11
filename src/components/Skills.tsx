@@ -46,7 +46,7 @@ const Skills = () => {
     'AWS', 'Jenkins', 'Kubernetes'
   ];
 
-  const whatIDoB est = [
+  const whatIDoBest = [
     {
       title: "Machine Learning",
       description: "Building intelligent models and data-driven applications"
@@ -167,7 +167,7 @@ const Skills = () => {
             <CardContent className="p-6 text-center">
               <h3 className="text-xl font-bold mb-6 gradient-text animate-gradient bg-gradient-to-r from-primary via-blue-400 to-purple-500">What I Do Best</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {whatIDoB est.map((item, index) => (
+                {whatIDoBest.map((item, index) => (
                   <div key={index} className="animate-bounce-in" style={{ animationDelay: `${index * 0.1}s` }}>
                     <h4 className="font-semibold text-foreground mb-2 text-sm">{item.title}</h4>
                     <p className="text-xs text-muted-foreground">{item.description}</p>
