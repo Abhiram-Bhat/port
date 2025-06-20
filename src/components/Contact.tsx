@@ -18,44 +18,74 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Please fill in all fields",
+        description: "All fields are required to send your message.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(`Contact from ${formData.name}`);
+      // Create a more comprehensive mailto link
+      const subject = encodeURIComponent(`Portfolio Contact: ${formData.name}`);
       const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        `Hello Abhiram,\n\nI am reaching out to you through your portfolio website.\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
       );
-      const mailtoLink = `mailto:abhiramta267@gmail.com?subject=${subject}&body=${body}`;
       
-      // Open mailto link
-      window.location.href = mailtoLink;
+      // Create and click a temporary link to open email client
+      const mailtoLink = `mailto:abhiramta267@gmail.com?subject=${subject}&body=${body}`;
+      const tempLink = document.createElement('a');
+      tempLink.href = mailtoLink;
+      tempLink.style.display = 'none';
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
       
       // Show success message
       toast({
-        title: "Email Client Opened",
-        description: "Your default email client should open with the message pre-filled. Please send the email to complete your inquiry.",
+        title: "Email Client Opened Successfully!",
+        description: "Your email client should now be open with your message pre-filled. Please send the email to complete your inquiry.",
       });
 
-      // Reset form
+      // Reset form after successful submission
       setFormData({ name: '', email: '', message: '' });
+      
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error opening email client:', error);
+      
+      // Fallback: provide manual email instructions
       toast({
-        title: "Error",
-        description: "There was an error opening your email client. Please email me directly at abhiramta267@gmail.com",
+        title: "Email Client Error",
+        description: `Please send your message manually to: abhiramta267@gmail.com`,
         variant: "destructive",
       });
+      
+      // Copy email to clipboard as fallback
+      try {
+        await navigator.clipboard.writeText('abhiramta267@gmail.com');
+        toast({
+          title: "Email Copied!",
+          description: "My email address has been copied to your clipboard.",
+        });
+      } catch (clipboardError) {
+        console.error('Clipboard error:', clipboardError);
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   return (
@@ -137,11 +167,11 @@ const Contact = () => {
                   <CardTitle className="text-xl sm:text-2xl gradient-text">Send a Message</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
                     <div>
                       <Input
                         name="name"
-                        placeholder="Your Name"
+                        placeholder="Your Name *"
                         value={formData.name}
                         onChange={handleChange}
                         className="bg-secondary/50 border-border focus:border-primary h-11 sm:h-12"
@@ -153,7 +183,7 @@ const Contact = () => {
                       <Input
                         name="email"
                         type="email"
-                        placeholder="Your Email"
+                        placeholder="Your Email *"
                         value={formData.email}
                         onChange={handleChange}
                         className="bg-secondary/50 border-border focus:border-primary h-11 sm:h-12"
@@ -164,7 +194,7 @@ const Contact = () => {
                     <div>
                       <Textarea
                         name="message"
-                        placeholder="Your Message"
+                        placeholder="Your Message *"
                         rows={5}
                         value={formData.message}
                         onChange={handleChange}
@@ -179,9 +209,15 @@ const Contact = () => {
                       disabled={isSubmitting}
                     >
                       <Send className="w-4 h-4 mr-2" />
-                      {isSubmitting ? 'Opening Email...' : 'Send Message'}
+                      {isSubmitting ? 'Opening Email Client...' : 'Send Message'}
                     </Button>
                   </form>
+                  
+                  <div className="mt-4 text-center">
+                    <p className="text-xs text-muted-foreground">
+                      * All fields are required
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             </div>
