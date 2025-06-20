@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
@@ -8,7 +7,7 @@ const Skills = () => {
       title: "Programming Languages",
       skills: [
         { name: "Python", level: "Advanced" },
-        { name: "JavaScript", level: "Advanced" },
+        { name: "JavaScript", level: "Intermediate" },
         { name: "C/C++", level: "Intermediate" },
         { name: "Java", level: "Intermediate" }
       ]
@@ -16,7 +15,7 @@ const Skills = () => {
     {
       title: "Web Technologies",
       skills: [
-        { name: "React", level: "Advanced" },
+        { name: "React", level: "Intermediate" },
         { name: "Node.js", level: "Advanced" },
         { name: "HTML/CSS", level: "Advanced" },
         { name: "MongoDB", level: "Intermediate" }
@@ -37,7 +36,7 @@ const Skills = () => {
     { name: "Frontend Development", description: "Building responsive and interactive user interfaces" },
     { name: "Backend Development", description: "Creating robust server-side applications" },
     { name: "DevOps & Cloud", description: "Streamlining deployment and infrastructure" },
-    { name: "UI/UX Design", description: "Designing user-centered digital experiences" }
+    { name: "Machine Learning", description: "Developing AI models and intelligent applications" }
   ];
 
   const tools = [
