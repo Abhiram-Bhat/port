@@ -1,5 +1,5 @@
 
-import { Github, Linkedin, Twitter, Mail, Heart, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -41,9 +41,6 @@ const Footer = () => {
           <div className="border-t border-border pt-8">
             <p className="text-muted-foreground flex items-center justify-center gap-2 mb-3">
               Made with <Heart className="w-4 h-4 text-red-500" fill="currentColor" /> by Abhiram T A
-            </p>
-            <p className="text-sm text-muted-foreground/80 flex items-center justify-center gap-2 mb-2">
-              Crafted with <Sparkles className="w-4 h-4 text-primary" /> using <span className="text-primary font-semibold">Lovable</span>
             </p>
             <p className="text-sm text-muted-foreground mt-2">
               © 2024 All rights reserved.
