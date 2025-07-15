@@ -24,11 +24,11 @@ const Footer = () => {
                className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
               <Github className="w-6 h-6" />
             </a>
-            <a href="https://www.linkedin.com/in/abhiram-bhat-4b6ba3249/" 
+            <a href="https://www.linkedin.com/in/abhiram-t-a-4b6ba3249/" 
                className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
               <Linkedin className="w-6 h-6" />
             </a>
-            <a href="https://twitter.com/Abhiram_Bhat" 
+            <a href="twitter.com/ABhat5408" 
                className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
               <Twitter className="w-6 h-6" />
             </a>
