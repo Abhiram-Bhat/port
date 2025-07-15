@@ -38,14 +38,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="border-t border-border pt-8">
-            <p className="text-muted-foreground flex items-center justify-center gap-2 mb-3">
-              Made with <Heart className="w-4 h-4 text-red-500" fill="currentColor" /> by Abhiram T A
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              © 2024 All rights reserved.
-            </p>
-          </div>
+          
         </div>
       </div>
     </footer>
